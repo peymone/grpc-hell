@@ -15,7 +15,7 @@
 
 - **_Unary gRPC method (client sends a single request and gets back a single response)_**
 - **_Client stream gRPC method (client sends a request itearator and gets back a single response)_**
-- **_Client stream gRPC method (client sends a single request and gets back an iterarot response)_**
+- **_Server stream gRPC method (client sends a single request and gets back an iterator response)_**
 - **_Bidirectional gRPC method (client and server sends iterators)_**
 
 
