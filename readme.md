@@ -90,5 +90,5 @@ _Also, check exaples in gRPC Repo: <a href=https://github.com/grpc/grpc/tree/mas
 1. _Clone repo to your device: ```git clone -depth=1 https://github.com/peymone/grpc-hell.git```_
 2. _Open terminal in project directory and run server: ```python app/server.py```_
 3. _Open terminal in project directory and run client: ```python app/client.py```_
-4. _From now on we'll be on our own_
+4. _From now on you'll be on your own_
 
