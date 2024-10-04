@@ -1,0 +1,49 @@
+
+syntax = "proto3"; // Version of syntax used py protocol
+package unary; // Package name definition, which can be omitted in Python
+
+
+// `message` is used to define the structure of the data to be transmitted
+
+message GetNone {}
+
+message GetUserRequest {
+    int32 user_id = 1;
+}
+
+message GetUserResponse {
+    int32 user_id = 1;
+    string user_name = 2;
+    string user_email = 3;
+    string user_roles = 4;
+    string user_status = 5;
+}
+
+// `service` is used to define methods for gRPC services in a fixed format
+
+service Users{
+
+    // unary-unary (In a single call, the client can only send request once, 
+    // and the server can only respond once)
+
+    rpc GetNoneUnary (GetNone) returns (GetNone);
+    rpc GetUserUnary (GetUserRequest) returns (GetUserResponse);
+
+    // stream-unary (In a single call, the client can transfer data to the server several times,
+    // but the server can only return a response once.)
+
+    rpc GetUserClientStream (stream GetUserRequest) returns (GetUserResponse);
+
+    // unary-stream (In a single call, the client can only transmit data to the server at one time,
+    // but the server can return the response many times.)
+
+    rpc GetUserServerStream (GetUserRequest) returns (stream GetUserResponse);
+
+    // stream-stream (In a single call, both client and server can send and receive data
+    // to each other multiple times.)
+    rpc GetUserBidirectional (stream GetUserRequest) returns (stream GetUserResponse);
+}
+
+// To create stubs, use this command: 
+// python -m grpc_tools.protoc --proto_path=./protos demo.proto --python_out=./grpc_out --grpc_python_out=./grpc_out
+// Then copy generated code to client side too
