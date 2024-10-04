@@ -1,14 +1,6 @@
 <h1 align="center">gRPC Tutorial Hell</h1>
 
 <p align="center">
-    <!-- <img src="https://img.shields.io/badge/%20Python-3.11.3-blue?style=for-the-badge&logo=Python" alt="Python">
-    <img src="https://img.shields.io/badge/%20SQLAlchemy-2.0.35-brightgreen?style=for-the-badge" alt="SQLAlchemy">
-    <img src="https://img.shields.io/badge/%20FastAPI-0.114.2-brightgreen?style=for-the-badge" alt="FastAPI">
-    <img src="https://img.shields.io/badge/pytest-8.3.3-brightgreen?style=for-the-badge" alt="Pyetst">
-    <img src="https://img.shields.io/badge/pytest_asyncio-0.24.0-brightgreen?style=for-the-badge" alt="pytest_asyncio"> -->
-</p>
-
-<p align="center">
     <img src="https://img.shields.io/github/downloads/peymone/grpc-hell/total?style=social&logo=github" alt="downloads">
     <img src="https://img.shields.io/github/watchers/peymone/grpc-hell" alt="watchers">
     <img src="https://img.shields.io/github/stars/peymone/grpc-hell" alt="stars">
@@ -21,18 +13,20 @@
 
 **_The examples of services presented here are completely meaningless, but are useful for understanding the protocol. So, we have:_**
 
-- **_something (currently not imlemented)_**
-- **_Unary RPC (client sends a single request and gets back a single response)_**
+- **_Unary gRPC method (client sends a single request and gets back a single response)_**
+- **_Client stream gRPC method (client sends a request itearator and gets back a single response)_**
+- **_Client stream gRPC method (client sends a single request and gets back an iterarot response)_**
+- **_Bidirectional gRPC method (client and server sends iterators)_**
 
 
 <h2>How to setup this gRPC thingy?</h2>
 
 **_It's just common tutorial how to work with protocol_**
 
-1. *_Install gRPC dependencies for protocol usage_*
+- *_Install gRPC dependencies for protocol usage_*
     - _Install gRPC:_ ```pip install grpcio (gRPC)```
     - _Install proto buffer compiler:_ ```pip install grpcio-tools```
-2. _Create .proto file somewhere and describe it (example below)_
+- _Create .proto file somewhere and describe it (example below)_
     
 ```
 syntax = "proto3"; // Version of syntax used py protocol
@@ -79,17 +73,22 @@ service GRPCDemo {
 
 ```
 _You can find more information about .proto building here: <a href=https://protobuf.dev/programming-guides/proto>gRPC guide</a>_<br/>
-_Or basic tutorial for python here: <a href=https://grpc.io/docs/languages/python/basics/>Basic Tutorial</a>_
+_Or basic tutorial for python here: <a href=https://grpc.io/docs/languages/python/basics/>Basic Tutorial</a>_<br/>
+_Also, check exaples in gRPC Repo: <a href=https://github.com/grpc/grpc/tree/master/examples/python>gRPC Examples</a>_
 
-3. _Next you need to generate the gRPC client and server interfaces_
+- _Next you need to generate the gRPC client and service interfaces (Do it on service side)_
     - Code: ```python -m grpc_tools.protoc --proto_path=./protos unary.proto --python_out=./grpc_out --grpc_python_out=./grpc_out```
     - _Oh, make a coffee_
-4. _Cool, now, let's go implement your service and client_
+- _Copy generated code to client side too_
+- _Cool, now, let's go implement your service and client (you can see examples in repo)_
 
 **_P.S. the generated file `*_pb2_grpc.py` almost always has problems with importing `*_pb2.py` file._**
 
 
-<h2>Where do I need to use this?</h2>
+<h2>Deploy my demo project</h2>
 
-_Somewhere... Put something here_
+1. _Clone repo to your device: ```git clone -depth=1 https://github.com/peymone/grpc-hell.git```_
+2. _Open terminal in project directory and run server: ```python app/server.py```_
+3. _Open terminal in project directory and run client: ```python app/client.py```_
+4. _From now on we'll be on our own_
 
